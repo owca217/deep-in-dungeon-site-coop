@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#101211">
+  <title>Deep in Dungeon — gra w przeglądarce</title>
+  <link id="-gd-engine-icon" rel="icon" type="image/png" href="index.icon.png" />
+<link rel="apple-touch-icon" href="index.apple-touch-icon.png"/>
+
+  <style>
+    *{box-sizing:border-box}body{margin:0;background:#101211;color:#eeeee3;font:14px/1.5 'Segoe UI',Arial,sans-serif;height:100dvh;display:flex;flex-direction:column;overflow:hidden;padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left)}
+    header{flex:0 0 48px;display:flex;align-items:center;justify-content:center;gap:16px;padding:6px 10px}
+    button,a{color:#eed29a;font:inherit}button{border:1px solid #655b40;background:#191c19;padding:6px 12px;cursor:pointer}button:disabled{opacity:.6}
+    main{position:relative;flex:1;min-height:0;width:100%;background:#100f0d}
+    main:fullscreen{width:100vw;height:100dvh;padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left)}
+    canvas{display:block;width:100%;height:100%;touch-action:none;outline:none}
+    #status{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:18px;padding:28px;text-align:center;background:#100f0d}
+    #status img{width:140px;border-radius:8px}progress{width:90%;accent-color:#d4b777}#notice{color:#d4b777;font-size:13px}
+    [hidden]{display:none!important}noscript{display:block;text-align:center;padding:24px}
+    @media(max-width:560px){header{justify-content:space-between;gap:8px}header span{display:none}}
+  </style>
+</head>
+<body>
+  <header><button id="back" disabled>Zapisz i wróć</button><span>Deep in Dungeon · prototyp</span><button id="fullscreen" type="button">Pełny ekran</button></header>
+  <main>
+    <canvas id="canvas" width="1080" height="1920" tabindex="0" aria-label="Deep in Dungeon — plansza gry">Przeglądarka nie obsługuje obrazu gry.</canvas>
+    <div id="status" role="status"><img src="index.png" alt=""><strong id="message">Otwieramy bramę lochu…</strong><progress id="progress"></progress><p id="notice">Pierwsze uruchomienie pobiera pliki gry. Zapis pozostaje w tej przeglądarce.</p><a href="../#zagraj">Wróć do wyboru wersji</a></div>
+  </main>
+  <noscript>Do uruchomienia gry potrzebny jest JavaScript. <a href="../#zagraj">Wróć na stronę</a>.</noscript>
+  <script src="index.js"></script>
+  <script>
+    const config={"args":[],"canvasResizePolicy":0,"emscriptenPoolSize":8,"ensureCrossOriginIsolationHeaders":true,"executable":"index","experimentalVK":true,"fileSizes":{"index.pck":22461676,"index.wasm":39514754},"focusCanvas":true,"gdextensionLibs":[],"godotPoolSize":4};
+    const engine=new Engine(config);
+    const back=document.getElementById('back');
+    const canvas=document.getElementById('canvas');
+    const fullscreen=document.getElementById('fullscreen');
+    // Policy0 leaves CSS in control. Update actual render pixels as the canvas
+    // changes; Godot4.7 observes these dimensions without forcing window height.
+    function resizeCanvas(){
+      const rect=canvas.getBoundingClientRect();
+      const density=window.devicePixelRatio||1;
+      const width=Math.max(1,Math.round(rect.width*density));
+      const height=Math.max(1,Math.round(rect.height*density));
+      if(canvas.width!==width)canvas.width=width;
+      if(canvas.height!==height)canvas.height=height;
+    }
+    new ResizeObserver(resizeCanvas).observe(canvas);
+    window.addEventListener('resize',resizeCanvas);
+    document.addEventListener('fullscreenchange',resizeCanvas);
+    resizeCanvas();
+    fullscreen.disabled=!document.fullscreenEnabled;
+    fullscreen.addEventListener('click',()=>document.querySelector('main').requestFullscreen().catch(()=>{
+      fullscreen.textContent='Pełny ekran niedostępny';
+    }));
+    const status=document.getElementById('status');
+    const progress=document.getElementById('progress');
+    let storageFailed=false;
+    function inspectStorageMessage(args){
+      // These diagnostics come from the pinned Godot 4.7.2 Web runtime.
+      const message=args.map(String).join(' ');
+      if(!/IndexedDB not available|Failed to save IDB file system/.test(message))return;
+      storageFailed=true;status.hidden=false;progress.hidden=true;back.disabled=true;
+      document.getElementById('message').textContent='Zapisywanie postępu jest niedostępne.';
+      document.getElementById('notice').textContent='Przeglądarka odmówiła dostępu do zapisu lub zabrakło miejsca. Ostatnie zmiany mogą nie być zachowane. Sprawdź ustawienia danych tej witryny i wolne miejsce przed ponownym uruchomieniem gry.';
+    }
+    function fail(error){
+      console.error(error);
+      status.hidden=false;progress.hidden=true;
+      document.getElementById('message').textContent='Nie udało się uruchomić gry.';
+      document.getElementById('notice').textContent='Spróbuj odświeżyć stronę w aktualnym Chrome, Edge lub Firefox. Możesz też wybrać APK na Androida.';
+    }
+    const missing=Engine.getMissingFeatures({threads:false});
+    back.addEventListener('click',()=>engine.requestQuit());
+    if(missing.length)fail(new Error(missing.join(', ')));
+    else engine.startGame({
+      onPrint(...args){console.log(...args);inspectStorageMessage(args);},
+      onPrintError(...args){console.error(...args);inspectStorageMessage(args);},
+      onProgress(current,total){if(total>0){progress.value=current;progress.max=total;}},
+      // Godot waits for synchronization but reports its failure via diagnostics.
+      onExit(code){if(storageFailed)return;if(code===0)location.assign('../#zagraj');else fail(new Error('Exit '+code));}
+    }).then(()=>{if(!storageFailed){status.hidden=true;back.disabled=false;}},fail);
+  </script>
+</body>
+</html>
+

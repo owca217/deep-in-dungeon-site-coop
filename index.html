@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Przewodnik po Deep in Dungeon. Poznaj zasady wyprawy, karty wyposażenia, przedmioty, mieszkańców lochu i historię rozwoju gry.">
+  <meta name="theme-color" content="#101211">
+  <title>Deep in Dungeon — przewodnik po lochach</title>
+  <link rel="icon" href="assets/branding/deep-in-dungeon.png" type="image/png">
+  <link rel="stylesheet" href="styles.css">
+  <script defer src="data/content.js"></script>
+  <script defer src="catalogue.js"></script>
+  <script defer src="app.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Przejdź do treści</a>
+  <header class="site-header">
+    <a class="brand" href="#start" aria-label="Deep in Dungeon — początek strony">
+      <img src="assets/branding/deep-in-dungeon.png" width="42" height="42" alt="">
+      <span>DEEP IN DUNGEON<small>PRZEWODNIK WĘDROWCA</small></span>
+    </a>
+    <nav aria-label="Główne sekcje">
+      <a href="#zagraj">Zagraj</a><a href="#o-grze">O grze</a><a href="#przedmioty">Przedmioty</a><a href="#bestiariusz">Bestiariusz</a><a href="#historia">Historia wersji</a>
+    </nav>
+    <span class="header-version"><span class="status-dot"></span><span>Prototyp <span data-current-version>0.40</span></span></span>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="start" aria-labelledby="hero-title">
+      <div class="hero-art" aria-hidden="true"></div>
+      <div class="hero-content page-width">
+        <p class="eyebrow"><span class="tiny-diamond">◇</span> TUROWA GRA KARCIANA · PRZEGLĄDARKA I ANDROID</p>
+        <h1 id="hero-title">Zanim zejdziesz<br>jeszcze <em>głębiej.</em></h1>
+        <p class="hero-description">Każde piętro to nowa niewiadoma.<br>Każdy przedmiot — inny sposób na przetrwanie.</p>
+        <p class="hero-subtitle">Poznaj lochy Deep in Dungeon: wyposażenie, które buduje twoją talię, przeciwników na drodze i historię powstawania gry.</p>
+        <div class="hero-actions"><a class="button button-gold" href="#przedmioty">Odkryj ekwipunek <span aria-hidden="true">↗</span></a><a class="text-link" href="#o-grze">Poznaj zasady <span aria-hidden="true">→</span></a><a class="text-link" href="#zagraj">Wybierz wersję gry <span aria-hidden="true">↓</span></a></div>
+        <p class="hero-footnote"><span class="status-dot"></span> Bez pośpiechu. We własnym tempie.</p>
+      </div>
+      <div class="hero-caption" aria-hidden="true"><span>01 / WYPRAWA W NIEZNANE</span><span>GŁĘBOKOŚĆ NIE MA KOŃCA</span></div>
+    </section>
+
+    <div class="facts page-width" aria-label="Gra w liczbach">
+      <div><strong>25</strong><span>przedmiotów w grze</span></div><div><strong>6</strong><span>maks. kart w ręce gracza</span></div><div><strong>8</strong><span>osób w drużynie, łącznie z tobą</span></div><div><strong data-release-count>38</strong><span>udokumentowane wersje</span></div>
+    </div>
+
+    <section class="section page-width play-section" id="zagraj" aria-labelledby="play-title">
+      <div class="play-intro"><p class="eyebrow">ZAGRAJ / WYBIERZ WERSJĘ</p><h2 id="play-title">Twój pierwszy krok<br>w głąb lochu.</h2><p>Rozpocznij wyprawę w przeglądarce albo pobierz aplikację na Androida. Obie wersje korzystają z tych samych zasad gry.</p></div>
+      <div class="play-choices">
+      <div class="download-panel browser-panel">
+        <p class="eyebrow">PRZEGLĄDARKA · PROTOTYP 0.40</p>
+        <a class="button button-gold" id="web-play" href="gra/">Graj w przeglądarce <span aria-hidden="true">↗</span></a>
+        <p class="download-meta">Bez instalacji · Komputer i urządzenia z WebGL 2</p>
+        <p class="browser-description">Kliknij i wejdź do lochu. Pierwsze uruchomienie wymaga pobrania plików gry. Najlepiej zacząć od aktualnego Chrome, Edge lub Firefox na komputerze.</p>
+        <p class="download-note">Postęp zapisuje się w tej przeglądarce i jest niezależny od APK. Wyczyszczenie danych witryny usuwa zapis. Do powrotu na stronę użyj „Zapisz i wróć”. Wersja Web jest prototypem; test na fizycznym telefonie nie został wykonany.</p>
+      </div>
+      <div class="download-panel">
+        <p class="eyebrow">AKTUALNE WYDANIE · <span data-download-version></span></p>
+        <a class="button button-gold" id="apk-download" href="https://drive.google.com/file/d/1t2nUJJ4c2rpaMW-o2E0j4mSwMvW_7srR/view" target="_blank" rel="noopener" aria-describedby="apk-requirements apk-size">Pobierz APK na Androida</a>
+        <p class="download-meta"><span id="apk-requirements"></span><span aria-hidden="true">·</span><span id="apk-size"></span></p>
+        <p class="download-file" id="apk-file-name"></p>
+        <ol class="install-steps"><li>Na Dysku wybierz „Pobierz”, a na ekranie skanowania „Pobierz mimo to”. Następnie otwórz zapisany plik APK na telefonie.</li><li>Jeśli Android zapyta, zezwól przeglądarce lub menedżerowi plików na instalację tej aplikacji.</li></ol>
+        <p class="download-note">Aplikacja Android działa offline. Aktualizuj grę bez odinstalowania poprzedniej wersji, aby zachować zapis.</p>
+      </div>
+      </div>
+    </section>
+
+    <section class="section page-width" id="o-grze" aria-labelledby="about-title">
+      <div class="section-heading"><div><p class="eyebrow">01 / O GRZE</p><h2 id="about-title">Mała talia.<br>Wielkie decyzje.</h2></div><p>Wyruszasz z drewnianym nożem. Przemierzasz losowane piętra, zbierasz sprzęt i szukasz drogi w dół. To, co założysz, określa karty, którymi walczysz.</p></div>
+      <div class="principles">
+        <article><span class="principle-icon" aria-hidden="true">♧</span><h3>Sprzęt staje się talią</h3><p>Broń daje ataki, kostur i artefakty — także wsparcie. Różne przedmioty wnoszą różne liczby kart. Na początku własnej tury otrzymujesz do sześciu kart.</p></article>
+        <article><span class="principle-icon" aria-hidden="true">◇</span><h3>Liczy się twój ruch</h3><p>Walka jest turowa. Wybierasz kartę i cel, pilnujesz energii. Klasa pancerza utrudnia trafienie, a bariera pochłania obrażenia. Każda z tych ochron działa inaczej.</p></article>
+        <article><span class="principle-icon" aria-hidden="true">♙</span><h3>Nie musisz iść samotnie</h3><p>Zacznij z jednym wybranym towarzyszem: Wojownikiem, Łucznikiem, Magiem, Łotrzykiem albo Klerykiem. Rekrutuj kolejnych, rozmawiaj i wymieniaj sprzęt. Kierujesz swoim bohaterem; sojusznicy podejmują własne decyzje.</p></article>
+        <article><span class="principle-icon" aria-hidden="true">↧</span><h3>Loch nie czeka</h3><p>Mniejsze pokoje łączą cienkie korytarze. Wrogowie mogą rozpocząć walkę przez aggro zależne od siły całych drużyn; ściany blokują wykrycie przez aggro. Podczas marszu mogą pojawić się posiłki poza kadrem.</p></article>
+      </div>
+      <p>Gdy nie masz jeszcze zapisanego imienia, gra pyta: „Podaj imię swojego nieszczęśnika”. Wybierz od 1 do 24 znaków, z polskimi literami i spacjami. Imię pozostaje po zamknięciu gry; zmienisz je przez Opcje → Zmień nazwę postaci. Zmiana obejmuje bieżącą i kolejne próby, bez resetowania postępu i historii.</p>
+      <p>Od 0.33 w centrum walki widać obie drużyny, do ośmiu postaci po każdej stronie, w dwóch rzędach po cztery. Nad postaciami są nazwy i paski zdrowia. Przycisk Dziennik otwiera pięć ostatnich zdarzeń od najnowszego, a stałe tempo NPC wynosi 0,4 s na zdarzenie. KP bohatera znajduje się w górnym pasku informacji; plecak otwiera przycisk z ikoną. Wskazywanie celu, informacje, rozmowy i dymki zachowują dotychczasowe działanie.</p>
+      <p>Od 0.34 dotknięcie postaci w bitwie otwiera od razu jej szczegóły, bez pośredniej listy drużyn. Zamknij lub Wstecz wraca do walki. Zachowano ograniczenia informacji o wrogach, wybór celu i rozmowy.</p>
+      <p>Od 0.35 rozwinięta ręka kart jest przed postaciami i przechwytuje dotknięcia kart. Plecak nad talią znajduje się nieco wyżej. Przycisk Auto obok plecaka oraz w nagłówku ręki pozwala powierzyć grze kolejne tury bohatera: co 0,4 sekundy wybiera kartę według tych samych zasad decyzji co towarzysze, bez używania mikstur. Gdy nie ma dostępnego zagrania, kończy turę i odtwarza zwykłe działania NPC, po czym kontynuuje następną turę bohatera. Auto jest domyślnie przygaszone i wyłączone; po włączeniu staje się kolorowe. Możesz je wyłączyć ponownym dotknięciem, także podczas działań NPC. Wyłącza się również po wyniku lub opuszczeniu walki, przejściu do menu lub w tło oraz błędzie zapisu. Kontynuuj wraca do ręcznego sterowania. Auto nie jest zapisywane jako stałe ustawienie i nie wymaga resetowania rozpoczętej próby.</p>
+      <p>Od 0.36 informacje o bohaterze — imię, zdrowie z paskiem, bariera, siła, energia i KP — znajdują się w zwartym panelu na prawo od talii. Komunikat walki i podpis pomieszczenia przesunięto, dzięki czemu postacie mają więcej miejsca u góry. Każda drużyna od trzech osób tworzy zygzak: kolejne postacie od lewej do prawej są naprzemiennie niżej i wyżej; jedna lub dwie pozostają w poziomej linii. Imiona, paski zdrowia i obszary dotyku są rozdzielone, a figury dopasowują rozmiar także do krótkiego ekranu. Zmienia się układ ekranu, bez nowych zasad walki. Auto, ręka kart przed figurami i dotychczasowe zapisy pozostają.</p>
+      <p>Od 0.37 lochy nie mają mgły, zaciemnienia terenu ani stopniowego odkrywania mapy. Cały teren piętra jest dostępny od początku, również w podglądzie mapy. W menu nie ma przełącznika mgły. Podczas marszu nadal oglądasz kadr 11 × 11 pól wokół bohatera; ściany, ruch i aggro działają jak wcześniej. Rozpoczęte próby wczytują się z pełną widocznością terenu i zachowanym postępem, bez resetowania zapisu.</p>
+      <p>Od 0.38 informacje o dotkniętym sojuszniku lub przeciwniku otwierają się w wyśrodkowanym oknie dopasowanym wysokością do treści, bez przyciemniania pola walki. Długie szczegóły można przewijać, a rozmowa z towarzyszem jest dostępna w nagłówku. Zamknij i Wstecz wracają do bitwy; wybór celu, zasady walki i zapis pozostają bez zmian.</p>
+      <p>Od 0.39 cała gra dopasowuje się do ekranu w pionie i poziomie: menu, mapa, walka, karty, ekwipunek i okna. Na szerokim ekranie panele układają się obok pola gry, a ilustracje zachowują proporcje. W przeglądarce gra zajmuje dostępne okno i ma przycisk Pełny ekran; Android dopuszcza obrót wraz z urządzeniem. Układ uwzględnia bezpieczny obszar przy krawędziach. Kadr mapy 11 × 11, reguły i zapis pozostają bez zmian. Obrót i wycięcia ekranu wymagają jeszcze odbioru na fizycznym telefonie.</p>
+      <p>Od 0.40 obie drużyny na polu walki używają skali postaci dobranej do liczniejszej strony. Przy trzech sojusznikach i dwóch przeciwnikach wszystkie figury mają skalę drużyny trzyosobowej. Równoliczne składy zachowują dotychczasowy rozmiar. Formacje, imiona, paski zdrowia, dotyk, reguły walki i zapis pozostają bez zmian.</p>
+      <p>Od 0.32 okno Nowa próba ma dwa wybory: poziom Normalny lub Trudny oraz jednego wskazanego przez ciebie towarzysza. Domyślnie są to Normalny i Kleryk. Nowe próby mają stałe cztery skrzynie na piętro. Każdy towarzysz zaczyna z istniejącym wyposażeniem odpowiednim do swojej roli i może je później zmieniać. Kontynuuj zachowuje dotychczasową drużynę, sprzęt i ustawienia zapisanej próby.</p>
+      <p>Od 0.31 ściany mają 36 nowych grafik: sześć kształtów po sześć wariantów, z jasnym, ciepłym kamieniem widzianym prostopadle z góry. Pozostały 24 dotychczasowe warianty podłóg oraz grafiki schodów, skrzyń, łupów i postaci. Wygląd danego rodzaju kafelka pozostaje stały podczas marszu i po wczytaniu; zobaczysz go także w rozpoczętej próbie, bez zmiany układu lochu.</p>
+      <p>Od 0.29 ściany są dobierane według rzeczywistego brzegu pokoju: proste odcinki nie zamieniają się w serię połączeń T. Poprawka obejmuje również bufor ruchu, bez resetowania wyprawy.</p>
+      <p>Od 0.30 nowe piętra mają 50 × 50 pól i 14 pokojów, a korytarze poza pokojami najwyżej 4 pola. Zapisane piętro pozostaje nietknięte; mniejszy loch powstaje dopiero przy nowej próbie lub zejściu niżej. Liczba przeciwników nie została zmniejszona.</p>
+      <div class="journey"><span class="journey-label">RYTM WYPRAWY</span><p>Przemierzaj <b>→</b> Walcz <b>→</b> Zbieraj <b>→</b> Zmieniaj talię <b>→</b> Schodź głębiej</p><small>Pokonaj bossa, odsłoń schody i zdecyduj o zejściu. Śmierć kończy próbę, zwykłe zamknięcie pozwala kontynuować zapis. Zapis następuje po ukończonych akcjach i trasach; nagłe ubicie procesu może cofnąć niedokończony marsz. Nowe zasady eksploracji od 0.26 działają na nowych próbach i kolejnych generowanych piętrach.</small></div>
+    </section>
+
+    <section class="catalogue-section section" id="przedmioty" aria-labelledby="items-title">
+      <div class="page-width">
+        <div class="section-heading"><div><p class="eyebrow">02 / BIBLIOTEKA PRZEDMIOTÓW</p><h2 id="items-title">Poznaj swój ekwipunek.</h2></div><p>Od pierwszego noża po niezwykłe znaleziska. Zajrzyj do środka, by zobaczyć statystyki, efekty i pełny zestaw kart.</p></div>
+        <form class="filters" id="item-filters" role="search" aria-label="Wyszukiwanie przedmiotów">
+          <div class="search-field"><label for="item-query">Szukaj przedmiotu</label><input type="search" id="item-query" placeholder="Nazwa lub opis, np. młot…" autocomplete="off"></div>
+          <div><label for="item-category">Kategoria</label><select id="item-category"><option value="all">Wszystkie kategorie</option value="weapon">Broń</option><option value="armor">Ochrona</option><option value="artifact">Artefakty</option><option value="consumable">Przedmioty użytkowe</option></select></div>
+          <div><label for="item-status">Zawartość</label><select id="item-status"><option value="implemented">W grze</option><option value="concept">Propozycje</option><option value="all">Wszystko</option></select></div>
+        </form>
+        <div class="catalogue-meta"><p id="item-count" role="status" aria-live="polite"></p><span>Liczby odzwierciedlają roboczy balans prototypu.</span></div>
+        <div id="item-results" class="catalogue-grid"></div>
+      </div>
+    </section>
+
+    <section class="section page-width" id="bestiariusz" aria-labelledby="enemies-title">
+      <div class="section-heading"><div><p class="eyebrow">03 / BESTIARIUSZ</p><h2 id="enemies-title">Nie wszystko w lochu<br>czeka na ratunek.</h2></div><p>Sprawdź, kto stoi na drodze. Obecnych przeciwników i przyszłe koncepcje wyraźnie oznaczono — wygląd nie oznacza wdrożenia.</p></div>
+      <form class="filters enemy-filters" id="enemy-filters" role="search" aria-label="Wyszukiwanie przeciwników">
+        <div class="search-field"><label for="enemy-query">Szukaj przeciwnika</label><input type="search" id="enemy-query" placeholder="Nazwa lub opis przeciwnika…" autocomplete="off"></div>
+        <div><label for="enemy-status">Zawartość</label><select id="enemy-status"><option value="all">W grze i propozycje</option><option value="implemented">W grze</option><option value="concept">Propozycje</option></select></div>
+      </form>
+      <div class="catalogue-meta"><p id="enemy-count" role="status" aria-live="polite"></p><span>Koncepcje nie są jeszcze częścią gry.</span></div>
+      <div id="enemy-results" class="catalogue-grid enemy-grid"></div>
+    </section>
+
+    <section class="history-section section" id="historia" aria-labelledby="history-title">
+      <div class="page-width history-layout">
+        <div class="history-intro"><p class="eyebrow">04 / HISTORIA WERSJI</p><h2 id="history-title">Loch nie powstał<br>w jeden dzień.</h2><p>Od pierwszej wymiany broni do kolejnych pięter i pełnej drużyny. Rozwiń wersję, aby poznać jej zmiany.</p><div class="current-release"><span class="status-dot"></span><span>AKTUALNA WERSJA<strong data-current-version>0.40</strong><small data-current-date>24 października 2026</small></span></div><p class="history-help">Możesz rozwinąć kilka wersji jednocześnie i porównać ich szczegóły.</p></div>
+        <div id="releases" class="releases"></div>
+      </div>
+    </section>
+    <noscript><p class="noscript page-width">Katalogi i historia wymagają włączonego JavaScript. Włącz go w przeglądarce i otwórz stronę ponownie. Link do pobrania APK działa również bez JavaScript.</p></noscript>
+  </main>
+
+  <footer class="site-footer page-width"><div class="footer-title">DEEP IN DUNGEON<span>Jeszcze jedno piętro.</span></div><div><p>Przewodnik po wersji <span data-current-version>0.40</span> · <span data-current-date>24 października 2026</span></p><p>Przeglądarka i Android · Prototyp w rozwoju</p></div><a class="text-link" href="#start">Wróć na górę ↑</a></footer>
+
+  <dialog id="entry-dialog" aria-labelledby="dialog-title">
+    <div class="dialog-toolbar"><span class="eyebrow">KSIĘGA LOCHÓW / SZCZEGÓŁY</span><button type="button" id="close-dialog" class="close-button" aria-label="Zamknij szczegóły">✕</button></div>
+    <div id="dialog-content"></div>
+  </dialog>
+</body>
+</html>
