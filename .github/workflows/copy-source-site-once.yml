@@ -1,0 +1,55 @@
+name: Copy source website once
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/copy-source-site-once.yml']
+permissions:
+  contents: write
+jobs:
+  copy:
+    if: github.event.repository.private == false && github.repository == 'owca217/deep-in-dungeon-site-coop'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - name: Copy complete website while preserving both histories
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+          DESTINATION: ${{ github.repository }}
+          EXPECTED_SOURCE: fd38a9c35784bed3869abee557172a0c85f0fdc5
+          EXPECTED_INITIAL_TARGET: b0374ed2c6d570925797883040541dd67f15bee9
+          WORKFLOW_FILE: .github/workflows/copy-source-site-once.yml
+        run: |
+          set -euo pipefail
+          test "$DESTINATION" = "owca217/deep-in-dungeon-site-coop"
+          test "$GITHUB_REF" = "refs/heads/main"
+          repository="$RUNNER_TEMP/coop-site-copy"
+          git init --initial-branch=main "$repository"
+          cd "$repository"
+          destination_url="https://github.com/owca217/deep-in-dungeon-site-coop.git"
+          header="$(printf 'x-access-token:%s' "$GH_TOKEN" | base64 -w0)"
+          echo "::add-mask::$header"
+          git -c "http.extraHeader=AUTHORIZATION: basic $header" fetch --no-tags "$destination_url" main
+          target_head="$(git rev-parse FETCH_HEAD)"
+          test "$target_head" = "$GITHUB_SHA"
+          test "$(git rev-parse "$target_head^")" = "$EXPECTED_INITIAL_TARGET"
+          test "$(git ls-tree -r --name-only "$target_head" | wc -l)" -eq 2
+          git fetch --no-tags https://github.com/owca217/deep-in-dungeon-site.git refs/heads/main:refs/remotes/source/main
+          source_head="$(git rev-parse refs/remotes/source/main)"
+          test "$source_head" = "$EXPECTED_SOURCE"
+          test "$(git ls-tree -r --name-only "$source_head" | wc -l)" -eq 64
+          if git cat-file -e "$source_head:$WORKFLOW_FILE" 2>/dev/null; then
+            echo "Source unexpectedly contains the temporary workflow path."
+            exit 1
+          fi
+          workflow_blob="$(git rev-parse "$target_head:$WORKFLOW_FILE")"
+          export GIT_INDEX_FILE="$RUNNER_TEMP/coop-site-copy.index"
+          git read-tree "$source_head^{tree}"
+          git update-index --add --cacheinfo "100644,$workflow_blob,$WORKFLOW_FILE"
+          copied_tree="$(git write-tree)"
+          copied_commit="$(printf 'Copy complete website into coop repository\n\nSource: owca217/deep-in-dungeon-site at %s\nPreserve original and destination histories.\n' "$source_head" | git -c user.name='github-actions[bot]' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' commit-tree "$copied_tree" -p "$target_head" -p "$source_head")"
+          git diff --exit-code "$source_head" "$copied_commit" -- . ":(exclude)$WORKFLOW_FILE"
+          git merge-base --is-ancestor "$target_head" "$copied_commit"
+          git merge-base --is-ancestor "$source_head" "$copied_commit"
+          git -c "http.extraHeader=AUTHORIZATION: basic $header" push "$destination_url" "$copied_commit:refs/heads/main"
+          printf 'Source: %s\nCopied commit: %s\n64 source files identical; temporary workflow retained for connector cleanup.\n' "$source_head" "$copied_commit" >> "$GITHUB_STEP_SUMMARY"
