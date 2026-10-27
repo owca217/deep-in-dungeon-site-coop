@@ -7,15 +7,20 @@
   document.querySelectorAll('[data-current-date]').forEach(node=>{node.textContent=formatDate(data.meta.updated);});
   const {filterEntries} = globalThis.DungeonCatalogue;
   const $ = id => document.getElementById(id);
-  if(data.download){
+  if(data.download && $('apk-download')){
     const download=data.download;
     const button=$('apk-download');
     button.href=download.url;
-    button.textContent=`Pobierz APK ${download.version} na Androida`;
+    button.textContent='Pobierz APK na Androida';
     document.querySelectorAll('[data-download-version]').forEach(node=>{node.textContent=download.version;});
-    $('apk-size').textContent=`${new Intl.NumberFormat('pl-PL',{maximumFractionDigits:1}).format(download.sizeBytes/1000000)} MB`;
-    $('apk-requirements').textContent=`Android ${download.androidMinimum}+ · ${download.architecture==='arm64-v8a'?'ARM64':download.architecture}`;
+    const size=$('apk-size');
+    size.hidden=!(Number.isFinite(download.sizeBytes) && download.sizeBytes>0);
+    if(!size.hidden)size.textContent=`${new Intl.NumberFormat('pl-PL',{maximumFractionDigits:1}).format(download.sizeBytes/1000000)} MB`;
+    $('apk-requirements').textContent=`Android${download.androidMinimum ? ` ${download.androidMinimum}+` : ''} · ${download.architecture==='arm64-v8a'?'ARM64':download.architecture}`;
     $('apk-file-name').textContent=download.fileName;
+    const checksum=$('apk-sha256');
+    checksum.hidden=!/^[a-f0-9]{64}$/.test(download.sha256 || '');
+    if(!checksum.hidden)checksum.textContent=`SHA256: ${download.sha256}`;
   }
   const labels = {weapon:'Broń',armor:'Ochrona',artifact:'Artefakt',consumable:'Przedmiot użytkowy',enemy:'Przeciwnik',boss:'Boss piętra'};
   const symbols = {weapon:'⚔',armor:'⛨',artifact:'✦',consumable:'♧',enemy:'♙',boss:'♛'};

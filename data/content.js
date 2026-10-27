@@ -1,11 +1,19 @@
-// Biblioteka i historia gry bazowej 0.40. Brak wydania APK tego projektu coopa.
+// Biblioteka gry bazowej 0.40 i metadane testowego APK osobnego projektu coopa.
 globalThis.DUNGEON_DATA = {
   "meta": {
     "title": "Deep in Dungeon",
     "version": "0.40",
     "updated": "2026-10-24"
   },
-  "download": null,
+  "download": {
+    "version": "0.40.0-coop-etap2 · testowy",
+    "url": "https://github.com/owca217/deep-in-dungeon-site-coop/releases/download/coop-etap2-android-1/DeepInDungeon-Coop-Etap2-arm64.apk",
+    "fileName": "DeepInDungeon-Coop-Etap2-arm64.apk",
+    "sizeBytes": 51376568,
+    "sha256": "1bbf0e6e7141c4d8a2c22327d27a8094438108f54138761cb2ece4602f5725ea",
+    "androidMinimum": "7.0",
+    "architecture": "arm64-v8a"
+  },
   "items": [
     {
       "armorClass": 0,
