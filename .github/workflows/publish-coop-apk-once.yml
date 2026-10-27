@@ -1,0 +1,32 @@
+name: Publish coop Android APK once
+on:
+  push:
+    branches: [coop-apk-stage2]
+    paths:
+      - .github/workflows/publish-coop-apk-once.yml
+      - release/android-1/**
+permissions:
+  contents: write
+jobs:
+  publish:
+    if: github.repository == 'owca217/deep-in-dungeon-site-coop'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Restore exact verified APK
+        run: |
+          curl --fail --location --max-time 120 'https://drive.usercontent.google.com/download?id=1t2nUJJ4c2rpaMW-o2E0j4mSwMvW_7srR&export=download&confirm=t' --output /tmp/coop-base.apk
+          node release/android-1/assemble.cjs release/android-1/coop-apk-release.manifest.json /tmp/coop-base.apk DeepInDungeon-Coop-Etap2-arm64.apk
+          sha256sum --check release/android-1/DeepInDungeon-Coop-Etap2-arm64.apk.sha256
+      - name: Publish test APK and checksum
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if gh release view coop-etap2-android-1 >/dev/null 2>&1; then
+            echo 'Release already exists; inspect it before retrying.'
+            exit 1
+          fi
+          gh release create coop-etap2-android-1 DeepInDungeon-Coop-Etap2-arm64.apk release/android-1/DeepInDungeon-Coop-Etap2-arm64.apk.sha256 --target "$GITHUB_SHA" --prerelease --title 'Deep in Dungeon Coop — etap 2 · Android' --notes-file release/android-1/notes.md
