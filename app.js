@@ -155,7 +155,7 @@
     const heading=element('div');heading.append(element('div','release-title',release.title));
     const meta=element('div','release-meta');
     if(release.date){const date=element('time','',formatDate(release.date));date.dateTime=release.date;meta.append(date);}
-    if(row.open)meta.append(element('span','latest-label','Aktualna wersja'));
+    if(row.open)meta.append(element('span','latest-label','Wersja bazowa'));
     heading.append(meta);summary.append(element('span','release-version',release.version),heading);row.append(summary);
     const content=element('div','release-content');
     for(const group of release.groups){content.append(element('h4','',group.label));const list=element('ul');for(const change of group.changes)list.append(element('li','',change));content.append(list);}

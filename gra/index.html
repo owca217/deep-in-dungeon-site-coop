@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#101211">
-  <title>Deep in Dungeon — gra w przeglądarce</title>
+  <title>deep in dungeon coop prototyp — gra w przeglądarce</title>
   <link id="-gd-engine-icon" rel="icon" type="image/png" href="index.icon.png" />
 <link rel="apple-touch-icon" href="index.apple-touch-icon.png"/>
 
@@ -22,7 +22,7 @@
   </style>
 </head>
 <body>
-  <header><button id="back" disabled>Zapisz i wróć</button><span>Deep in Dungeon · prototyp</span><button id="fullscreen" type="button">Pełny ekran</button></header>
+  <header><button id="back" disabled title="Sesję coopa zapisz wcześniej przyciskiem Zapisz sesję w grze.">Wróć na stronę</button><span>Deep in Dungeon · coop · zapis sesji w grze</span><button id="fullscreen" type="button">Pełny ekran</button></header>
   <main>
     <canvas id="canvas" width="1080" height="1920" tabindex="0" aria-label="Deep in Dungeon — plansza gry">Przeglądarka nie obsługuje obrazu gry.</canvas>
     <div id="status" role="status"><img src="index.png" alt=""><strong id="message">Otwieramy bramę lochu…</strong><progress id="progress"></progress><p id="notice">Pierwsze uruchomienie pobiera pliki gry. Zapis pozostaje w tej przeglądarce.</p><a href="../#zagraj">Wróć do wyboru wersji</a></div>
@@ -30,7 +30,7 @@
   <noscript>Do uruchomienia gry potrzebny jest JavaScript. <a href="../#zagraj">Wróć na stronę</a>.</noscript>
   <script src="index.js"></script>
   <script>
-    const config={"args":[],"canvasResizePolicy":0,"emscriptenPoolSize":8,"ensureCrossOriginIsolationHeaders":true,"executable":"index","experimentalVK":true,"fileSizes":{"index.pck":22461676,"index.wasm":39514754},"focusCanvas":true,"gdextensionLibs":[],"godotPoolSize":4};
+    const config={"args":[],"canvasResizePolicy":0,"emscriptenPoolSize":8,"ensureCrossOriginIsolationHeaders":true,"executable":"index","experimentalVK":true,"fileSizes":{"index.pck":22526872,"index.wasm":39514754},"focusCanvas":true,"gdextensionLibs":[],"godotPoolSize":4};
     const engine=new Engine(config);
     const back=document.getElementById('back');
     const canvas=document.getElementById('canvas');
@@ -68,7 +68,7 @@
       console.error(error);
       status.hidden=false;progress.hidden=true;
       document.getElementById('message').textContent='Nie udało się uruchomić gry.';
-      document.getElementById('notice').textContent='Spróbuj odświeżyć stronę w aktualnym Chrome, Edge lub Firefox. Możesz też wybrać APK na Androida.';
+      document.getElementById('notice').textContent='Spróbuj odświeżyć stronę w aktualnym Chrome, Edge lub Firefox. Sesję coopa zapisuje host przyciskiem Zapisz sesję w grze.';
     }
     const missing=Engine.getMissingFeatures({threads:false});
     back.addEventListener('click',()=>engine.requestQuit());

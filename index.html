@@ -3,9 +3,9 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Przewodnik po Deep in Dungeon. Poznaj zasady wyprawy, karty wyposażenia, przedmioty, mieszkańców lochu i historię rozwoju gry.">
+  <meta name="description" content="Deep in Dungeon Coop — prototyp kooperacji. Utwórz lobby, wybierz postać i eksploruj wspólną mapę z zapisem sesji hosta.">
   <meta name="theme-color" content="#101211">
-  <title>Deep in Dungeon — przewodnik po lochach</title>
+  <title>Deep in Dungeon Coop — wspólna wyprawa</title>
   <link rel="icon" href="assets/branding/deep-in-dungeon.png" type="image/png">
   <link rel="stylesheet" href="styles.css">
   <script defer src="data/content.js"></script>
@@ -15,57 +15,62 @@
 <body>
   <a class="skip-link" href="#main">Przejdź do treści</a>
   <header class="site-header">
-    <a class="brand" href="#start" aria-label="Deep in Dungeon — początek strony">
+    <a class="brand" href="#start" aria-label="Deep in Dungeon Coop — początek strony">
       <img src="assets/branding/deep-in-dungeon.png" width="42" height="42" alt="">
-      <span>DEEP IN DUNGEON<small>PRZEWODNIK WĘDROWCA</small></span>
+      <span>DEEP IN DUNGEON COOP<small>PROTOTYP WSPÓLNEJ WYPRAWY</small></span>
     </a>
     <nav aria-label="Główne sekcje">
       <a href="#zagraj">Zagraj</a><a href="#o-grze">O grze</a><a href="#przedmioty">Przedmioty</a><a href="#bestiariusz">Bestiariusz</a><a href="#historia">Historia wersji</a>
     </nav>
-    <span class="header-version"><span class="status-dot"></span><span>Prototyp <span data-current-version>0.40</span></span></span>
+    <span class="header-version"><span class="status-dot"></span><span>Coop · Etap 2</span></span>
   </header>
 
   <main id="main">
     <section class="hero" id="start" aria-labelledby="hero-title">
       <div class="hero-art" aria-hidden="true"></div>
       <div class="hero-content page-width">
-        <p class="eyebrow"><span class="tiny-diamond">◇</span> TUROWA GRA KARCIANA · PRZEGLĄDARKA I ANDROID</p>
-        <h1 id="hero-title">Zanim zejdziesz<br>jeszcze <em>głębiej.</em></h1>
-        <p class="hero-description">Każde piętro to nowa niewiadoma.<br>Każdy przedmiot — inny sposób na przetrwanie.</p>
-        <p class="hero-subtitle">Poznaj lochy Deep in Dungeon: wyposażenie, które buduje twoją talię, przeciwników na drodze i historię powstawania gry.</p>
-        <div class="hero-actions"><a class="button button-gold" href="#przedmioty">Odkryj ekwipunek <span aria-hidden="true">↗</span></a><a class="text-link" href="#o-grze">Poznaj zasady <span aria-hidden="true">→</span></a><a class="text-link" href="#zagraj">Wybierz wersję gry <span aria-hidden="true">↓</span></a></div>
-        <p class="hero-footnote"><span class="status-dot"></span> Bez pośpiechu. We własnym tempie.</p>
+        <p class="eyebrow"><span class="tiny-diamond">◇</span> KOOPERACJA · PROTOTYP W PRZEGLĄDARCE</p>
+        <h1 id="hero-title">Do lochu<br>wyruszcie <em>razem.</em></h1>
+        <p class="hero-description">Jedna wyprawa. Własne postacie.<br>Twórca lobby prowadzi waszą grę.</p>
+        <p class="hero-subtitle">Utwórz lobby albo dołącz zaproszeniem. Wybierzcie postacie, zatwierdźcie gotowość i ruszcie na wspólną mapę. Host może zapisać sesję i wznowić ją później.</p>
+        <div class="hero-actions"><a class="button button-gold" href="gra/">Zagraj w coopa <span aria-hidden="true">↗</span></a><a class="text-link" href="#o-grze">Jak zacząć <span aria-hidden="true">→</span></a><a class="text-link" href="#przedmioty">Poznaj ekwipunek <span aria-hidden="true">↓</span></a></div>
+        <p class="hero-footnote"><span class="status-dot"></span> Etap 2: lobby, wspólna mapa, ruch i zapis hosta.</p>
       </div>
       <div class="hero-caption" aria-hidden="true"><span>01 / WYPRAWA W NIEZNANE</span><span>GŁĘBOKOŚĆ NIE MA KOŃCA</span></div>
     </section>
 
-    <div class="facts page-width" aria-label="Gra w liczbach">
-      <div><strong>25</strong><span>przedmiotów w grze</span></div><div><strong>6</strong><span>maks. kart w ręce gracza</span></div><div><strong>8</strong><span>osób w drużynie, łącznie z tobą</span></div><div><strong data-release-count>38</strong><span>udokumentowane wersje</span></div>
+    <div class="facts page-width" aria-label="Kooperacja w liczbach">
+      <div><strong>8</strong><span>dostępnych postaci</span></div><div><strong>50×50</strong><span>pól wspólnej mapy</span></div><div><strong>1</strong><span>host prowadzi sesję</span></div><div><strong>2</strong><span>etap prototypu coopa</span></div>
     </div>
 
     <section class="section page-width play-section" id="zagraj" aria-labelledby="play-title">
-      <div class="play-intro"><p class="eyebrow">ZAGRAJ / WYBIERZ WERSJĘ</p><h2 id="play-title">Twój pierwszy krok<br>w głąb lochu.</h2><p>Rozpocznij wyprawę w przeglądarce albo pobierz aplikację na Androida. Obie wersje korzystają z tych samych zasad gry.</p></div>
+      <div class="play-intro"><p class="eyebrow">ZAGRAJ / KOOPERACJA</p><h2 id="play-title">Wspólna mapa.<br>Twoja postać.</h2><p>Uruchom grę i w jej menu wybierz Kooperacja. Host tworzy wyprawę, a pozostali dołączają zaproszeniem.</p></div>
       <div class="play-choices">
-      <div class="download-panel browser-panel">
-        <p class="eyebrow">PRZEGLĄDARKA · PROTOTYP 0.40</p>
-        <a class="button button-gold" id="web-play" href="gra/">Graj w przeglądarce <span aria-hidden="true">↗</span></a>
-        <p class="download-meta">Bez instalacji · Komputer i urządzenia z WebGL 2</p>
-        <p class="browser-description">Kliknij i wejdź do lochu. Pierwsze uruchomienie wymaga pobrania plików gry. Najlepiej zacząć od aktualnego Chrome, Edge lub Firefox na komputerze.</p>
-        <p class="download-note">Postęp zapisuje się w tej przeglądarce i jest niezależny od APK. Wyczyszczenie danych witryny usuwa zapis. Do powrotu na stronę użyj „Zapisz i wróć”. Wersja Web jest prototypem; test na fizycznym telefonie nie został wykonany.</p>
-      </div>
-      <div class="download-panel">
-        <p class="eyebrow">AKTUALNE WYDANIE · <span data-download-version></span></p>
-        <a class="button button-gold" id="apk-download" href="https://drive.google.com/file/d/1t2nUJJ4c2rpaMW-o2E0j4mSwMvW_7srR/view" target="_blank" rel="noopener" aria-describedby="apk-requirements apk-size">Pobierz APK na Androida</a>
-        <p class="download-meta"><span id="apk-requirements"></span><span aria-hidden="true">·</span><span id="apk-size"></span></p>
-        <p class="download-file" id="apk-file-name"></p>
-        <ol class="install-steps"><li>Na Dysku wybierz „Pobierz”, a na ekranie skanowania „Pobierz mimo to”. Następnie otwórz zapisany plik APK na telefonie.</li><li>Jeśli Android zapyta, zezwól przeglądarce lub menedżerowi plików na instalację tej aplikacji.</li></ol>
-        <p class="download-note">Aplikacja Android działa offline. Aktualizuj grę bez odinstalowania poprzedniej wersji, aby zachować zapis.</p>
-      </div>
+        <div class="download-panel browser-panel">
+          <p class="eyebrow">PRZEGLĄDARKA · COOP ETAP 2</p>
+          <a class="button button-gold" id="web-play" href="gra/">Zagraj w coopa <span aria-hidden="true">↗</span></a>
+          <p class="download-meta">Bez instalacji · WebGL 2 · Połączenie internetowe</p>
+          <p class="browser-description">Każdy gracz wybiera wolną postać i ustawia Gotowy. Host rozpoczyna eksplorację. Steruj kliknięciem lub dotykiem mapy, strzałkami albo WASD.</p>
+          <p class="download-note">Host zapisuje ręcznie przyciskiem Zapisz sesję. Wznów tworzy nowe lobby z tym samym stanem; postacie wybieracie ponownie, bez kont i sprawdzania dawnej tożsamości. Zapis jest lokalny w tej przeglądarce. Wyczyszczenie danych witryny usuwa zapis.</p>
+        </div>
+        <div class="download-panel">
+          <p class="eyebrow">OBECNY ZAKRES PROTOTYPU</p>
+          <p class="browser-description">Działają lobby, wspólna mapa, niezależny ruch i zapis hosta. Przy NPC ON nieobsadzone oraz rozłączone postacie podążają za postacią hosta; przy OFF czekają.</p>
+          <p class="download-note">Walka, łupy, interakcje i przejście na kolejne piętro w kooperacji należą do etapu 3. Zamknięcie hosta zatrzymuje wspólną grę; przed wyjściem zapisz sesję. Ten projekt nie ma jeszcze nowego wydania APK.</p>
+        </div>
       </div>
     </section>
 
     <section class="section page-width" id="o-grze" aria-labelledby="about-title">
-      <div class="section-heading"><div><p class="eyebrow">01 / O GRZE</p><h2 id="about-title">Mała talia.<br>Wielkie decyzje.</h2></div><p>Wyruszasz z drewnianym nożem. Przemierzasz losowane piętra, zbierasz sprzęt i szukasz drogi w dół. To, co założysz, określa karty, którymi walczysz.</p></div>
+      <div class="section-heading"><div><p class="eyebrow">01 / JAK ZACZĄĆ</p><h2 id="about-title">Zbierz drużynę.<br>Wróćcie do wyprawy.</h2></div><p>Etap 2 to wspólna eksploracja jednego piętra. Każdą postacią steruje najwyżej jedna osoba, a host zatwierdza ruch i zachowuje stan wyprawy.</p></div>
+      <div class="principles">
+        <article><span class="principle-icon" aria-hidden="true">◇</span><h3>Utwórz lub dołącz</h3><p>W menu gry wybierz Kooperacja. Utwórz wyprawę i prześlij zaproszenie znajomym albo wklej otrzymane zaproszenie przy Dołącz.</p></article>
+        <article><span class="principle-icon" aria-hidden="true">♙</span><h3>Wybierz postać</h3><p>Każdy wybiera wolnego bohatera i zatwierdza Gotowy. Gdy uczestnicy są gotowi, host rozpoczyna wyprawę.</p></article>
+        <article><span class="principle-icon" aria-hidden="true">↧</span><h3>Idź własną drogą</h3><p>Twoja postać ma własną pozycję i widok mapy. Włączone NPC podążają za aktualnie wybraną postacią hosta, kiedy nie prowadzi ich gracz.</p></article>
+        <article><span class="principle-icon" aria-hidden="true">♧</span><h3>Zapisz i wróć</h3><p>Host używa Zapisz sesję przed wyjściem. Późniejsze Wznów zachowuje mapę, postacie, pozycje i wyposażenie. Nowe lobby otrzymuje nowe zaproszenie i gotowość.</p></article>
+      </div>
+      <details class="release"><summary><span class="release-version">0.40</span><div><div class="release-title">Zasady i historia gry bazowej</div><div class="release-meta">Archiwalny opis solo — nie zakres walki coopa etapu 2</div></div></summary><div class="release-content">
+      <div class="section-heading"><div><p class="eyebrow">01 / O GRZE</p><h2 id="base-about-title">Mała talia.<br>Wielkie decyzje.</h2></div><p>Wyruszasz z drewnianym nożem. Przemierzasz losowane piętra, zbierasz sprzęt i szukasz drogi w dół. To, co założysz, określa karty, którymi walczysz.</p></div>
       <div class="principles">
         <article><span class="principle-icon" aria-hidden="true">♧</span><h3>Sprzęt staje się talią</h3><p>Broń daje ataki, kostur i artefakty — także wsparcie. Różne przedmioty wnoszą różne liczby kart. Na początku własnej tury otrzymujesz do sześciu kart.</p></article>
         <article><span class="principle-icon" aria-hidden="true">◇</span><h3>Liczy się twój ruch</h3><p>Walka jest turowa. Wybierasz kartę i cel, pilnujesz energii. Klasa pancerza utrudnia trafienie, a bariera pochłania obrażenia. Każda z tych ochron działa inaczej.</p></article>
@@ -86,11 +91,12 @@
       <p>Od 0.29 ściany są dobierane według rzeczywistego brzegu pokoju: proste odcinki nie zamieniają się w serię połączeń T. Poprawka obejmuje również bufor ruchu, bez resetowania wyprawy.</p>
       <p>Od 0.30 nowe piętra mają 50 × 50 pól i 14 pokojów, a korytarze poza pokojami najwyżej 4 pola. Zapisane piętro pozostaje nietknięte; mniejszy loch powstaje dopiero przy nowej próbie lub zejściu niżej. Liczba przeciwników nie została zmniejszona.</p>
       <div class="journey"><span class="journey-label">RYTM WYPRAWY</span><p>Przemierzaj <b>→</b> Walcz <b>→</b> Zbieraj <b>→</b> Zmieniaj talię <b>→</b> Schodź głębiej</p><small>Pokonaj bossa, odsłoń schody i zdecyduj o zejściu. Śmierć kończy próbę, zwykłe zamknięcie pozwala kontynuować zapis. Zapis następuje po ukończonych akcjach i trasach; nagłe ubicie procesu może cofnąć niedokończony marsz. Nowe zasady eksploracji od 0.26 działają na nowych próbach i kolejnych generowanych piętrach.</small></div>
+      </div></details>
     </section>
 
     <section class="catalogue-section section" id="przedmioty" aria-labelledby="items-title">
       <div class="page-width">
-        <div class="section-heading"><div><p class="eyebrow">02 / BIBLIOTEKA PRZEDMIOTÓW</p><h2 id="items-title">Poznaj swój ekwipunek.</h2></div><p>Od pierwszego noża po niezwykłe znaleziska. Zajrzyj do środka, by zobaczyć statystyki, efekty i pełny zestaw kart.</p></div>
+        <div class="section-heading"><div><p class="eyebrow">02 / BIBLIOTEKA GRY BAZOWEJ</p><h2 id="items-title">Poznaj swój ekwipunek.</h2></div><p>Wyposażenie i karty gry bazowej 0.40. Biblioteka pokazuje istniejącą zawartość; walka i zdobywanie łupów w kooperacji pozostają etapem 3.</p></div>
         <form class="filters" id="item-filters" role="search" aria-label="Wyszukiwanie przedmiotów">
           <div class="search-field"><label for="item-query">Szukaj przedmiotu</label><input type="search" id="item-query" placeholder="Nazwa lub opis, np. młot…" autocomplete="off"></div>
           <div><label for="item-category">Kategoria</label><select id="item-category"><option value="all">Wszystkie kategorie</option value="weapon">Broń</option><option value="armor">Ochrona</option><option value="artifact">Artefakty</option><option value="consumable">Przedmioty użytkowe</option></select></div>
@@ -102,7 +108,7 @@
     </section>
 
     <section class="section page-width" id="bestiariusz" aria-labelledby="enemies-title">
-      <div class="section-heading"><div><p class="eyebrow">03 / BESTIARIUSZ</p><h2 id="enemies-title">Nie wszystko w lochu<br>czeka na ratunek.</h2></div><p>Sprawdź, kto stoi na drodze. Obecnych przeciwników i przyszłe koncepcje wyraźnie oznaczono — wygląd nie oznacza wdrożenia.</p></div>
+      <div class="section-heading"><div><p class="eyebrow">03 / BESTIARIUSZ</p><h2 id="enemies-title">Nie wszystko w lochu<br>czeka na ratunek.</h2></div><p>Przeciwnicy i koncepcje z gry bazowej 0.40. Na wspólnej mapie etapu 2 obiekty pozostają widoczne, ale walka kooperacyjna nie jest jeszcze uruchamiana.</p></div>
       <form class="filters enemy-filters" id="enemy-filters" role="search" aria-label="Wyszukiwanie przeciwników">
         <div class="search-field"><label for="enemy-query">Szukaj przeciwnika</label><input type="search" id="enemy-query" placeholder="Nazwa lub opis przeciwnika…" autocomplete="off"></div>
         <div><label for="enemy-status">Zawartość</label><select id="enemy-status"><option value="all">W grze i propozycje</option><option value="implemented">W grze</option><option value="concept">Propozycje</option></select></div>
@@ -113,14 +119,14 @@
 
     <section class="history-section section" id="historia" aria-labelledby="history-title">
       <div class="page-width history-layout">
-        <div class="history-intro"><p class="eyebrow">04 / HISTORIA WERSJI</p><h2 id="history-title">Loch nie powstał<br>w jeden dzień.</h2><p>Od pierwszej wymiany broni do kolejnych pięter i pełnej drużyny. Rozwiń wersję, aby poznać jej zmiany.</p><div class="current-release"><span class="status-dot"></span><span>AKTUALNA WERSJA<strong data-current-version>0.40</strong><small data-current-date>24 października 2026</small></span></div><p class="history-help">Możesz rozwinąć kilka wersji jednocześnie i porównać ich szczegóły.</p></div>
+        <div class="history-intro"><p class="eyebrow">04 / HISTORIA GRY BAZOWEJ</p><h2 id="history-title">Loch nie powstał<br>w jeden dzień.</h2><p>Zachowana historia gry solo, z której powstał osobny prototyp kooperacji. Poniższe numery opisują grę bazową; bieżący coop jest na etapie 2.</p><div class="current-release"><span class="status-dot"></span><span>WERSJA BAZOWA<strong data-current-version>0.40</strong><small data-current-date>24 października 2026</small></span></div><p class="history-help">Możesz rozwinąć kilka wersji jednocześnie i porównać ich szczegóły.</p></div>
         <div id="releases" class="releases"></div>
       </div>
     </section>
-    <noscript><p class="noscript page-width">Katalogi i historia wymagają włączonego JavaScript. Włącz go w przeglądarce i otwórz stronę ponownie. Link do pobrania APK działa również bez JavaScript.</p></noscript>
+    <noscript><p class="noscript page-width">Katalogi i historia wymagają włączonego JavaScript. Włącz go w przeglądarce i otwórz stronę ponownie. Link Zagraj w coopa prowadzi do gry także bez skryptów tej strony.</p></noscript>
   </main>
 
-  <footer class="site-footer page-width"><div class="footer-title">DEEP IN DUNGEON<span>Jeszcze jedno piętro.</span></div><div><p>Przewodnik po wersji <span data-current-version>0.40</span> · <span data-current-date>24 października 2026</span></p><p>Przeglądarka i Android · Prototyp w rozwoju</p></div><a class="text-link" href="#start">Wróć na górę ↑</a></footer>
+  <footer class="site-footer page-width"><div class="footer-title">DEEP IN DUNGEON COOP<span>Wspólna wyprawa.</span></div><div><p>Coop · Etap 2 · 27 października 2026</p><p>Osobny prototyp na bazie gry <span data-current-version>0.40</span> · Biblioteka i historia gry bazowej zachowane</p></div><a class="text-link" href="#start">Wróć na górę ↑</a></footer>
 
   <dialog id="entry-dialog" aria-labelledby="dialog-title">
     <div class="dialog-toolbar"><span class="eyebrow">KSIĘGA LOCHÓW / SZCZEGÓŁY</span><button type="button" id="close-dialog" class="close-button" aria-label="Zamknij szczegóły">✕</button></div>

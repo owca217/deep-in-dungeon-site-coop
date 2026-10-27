@@ -1,19 +1,11 @@
-// Dane przewodnika. Generuj: node strona/tools/build-content.mjs
+// Biblioteka i historia gry bazowej 0.40. Brak wydania APK tego projektu coopa.
 globalThis.DUNGEON_DATA = {
   "meta": {
     "title": "Deep in Dungeon",
     "version": "0.40",
     "updated": "2026-10-24"
   },
-  "download": {
-    "version": "0.40",
-    "url": "https://drive.google.com/file/d/1t2nUJJ4c2rpaMW-o2E0j4mSwMvW_7srR/view",
-    "fileName": "DeepInDungeon-0.40-arm64-public.apk",
-    "sizeBytes": 51305334,
-    "sha256": "51b1c9a1229396a565fbadfc6b92ba1ce4fd106d87d6cf0aeb4ba9633cf0b8d8",
-    "androidMinimum": "7.0",
-    "architecture": "arm64-v8a"
-  },
+  "download": null,
   "items": [
     {
       "armorClass": 0,
